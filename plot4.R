@@ -1,7 +1,7 @@
 # clear the workspace
 rm(list = ls())
 
-# set working directory
+# set the working directory
 # setwd("E:/Coursera/Exploratory Data Analysis (for badge)/Project 1/exdata_data_household_power_consumption")
 
 # read up all the data
@@ -24,15 +24,11 @@ csv <- cbind(csv,
              DateTime = strptime(paste0(csv$Date, csv$Time), 
                                  format = "%d/%m/%Y %H:%M:%S"))
 
-par(mfrow = c(1, 1), cex = 0.8)
-plot(
-  csv$DateTime, csv$Global_active_power, type = "l",
-  ylab = "Global Active Power (kilowatts)",
-  xlab = ""
-)
+png(filename = "../repo/ExData_Plotting1/plot4.png", 
+    width = 480, height = 480)
 
-# this plot consists of 4 charts
-par(mfrow = c(2, 2), cex = 0.6)
+# this image consists of 4 charts
+par(mfrow = c(2, 2), cex = 0.85)
 
 # chart 1/4: the topleft chart
 plot(csv$DateTime, csv$Global_active_power, 
@@ -54,8 +50,5 @@ legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_
 plot(csv$DateTime, csv$Global_reactive_power, xlab = "datetime", 
      ylab = "Global_reactive_power", type = "l")
 
-# save the plot to PNG
-dev.copy(png, file = "../repo/ExData_Plotting1/plot4.png")
 # close the PNG device
 dev.off()
-dev.off() # comment out/remove this line to keep the chart on screen
